@@ -61,7 +61,7 @@ echo
 
 
 #while循环
-COUNTER=0
+count=0
 while [ $count -lt 5 ];do
     count=`expr $count + 1`
     echo $count
@@ -69,13 +69,96 @@ done
 
 
 
-echo '请输入.......'
-echo 'ctrl + c 即可停止该程序'
-while  read NUM 
-do
-	echo "Yeah! greate Num is $NUM"
-done
+# echo '请输入.......'
+# echo 'ctrl + c 即可停止该程序'
+# while  read NUM 
+# do
+# 	echo "Yeah! greate Num is $NUM"
+# done
 
 
+
+
+#****************条件判断************************
+<<COMMENT 
+
+-gt 大于
+-lt 小于
+-ge 大于等于
+-le 小于等于
+-eq 等于
+-ne 不等于
+
+COMMENT
+
+a=10
+b=20
+
+if [[ $a -eq $b ]]; then
+	echo "true"
+else
+   echo "false"
+fi
+
+
+
+
+if [[ $a -eq $b ]]; then
+	echo "a is equal to b"
+elif [[ $a -ge $b  ]]; then
+	echo "a is greater than b"
+elif [[ $a -lt $b ]]; then
+	echo "a is less than b"
+else
+	echo "None of the condition met"
+fi
+
+
+
+
+
+#****************函数************************
+
+#定义一个没有返回值的函数，然后调用该函数
+sysout(){
+	echo "Hello world 定义一个没有返回值的函数，然后调用该函数"
+}
+sysout
+
+
+#定义一个有返回值的函数，调用该函数并输出结果
+test(){
+	aNum=3
+	bNum=5
+	return $(($aNum + $bNum ))
+}
+
+test
+result=$?
+echo $result
+
+
+#定义一个需要传递参数的函数
+testPara(){
+  echo $1
+  echo $2 #接收到第二个参数
+  echo $3 #接收的第三个参数
+  echo $# #接收参数的个数
+  echo $* #接收的所有参数
+}
+
+testPara aa bb cc
+
+
+
+
+
+#****************字符窜操作*************
+string_1="Hello"
+string_2="world"
+
+echo ${#string_1} #输出字符串长度
+echo ${string_1:0:3} #截取字符串
+echo $string_1" "$string_2 #字符串拼接
 
 
